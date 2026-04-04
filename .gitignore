@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# Except remote.css
+!remote.css
+
+# And this gitignore
+!.gitignore

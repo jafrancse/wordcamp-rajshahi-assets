@@ -1,0 +1,110 @@
+/* ============================================
+   WordCamp Rajshahi 2026 - Custom CSS
+   ============================================ */
+
+
+/* --------------------------------------------
+   Call for Persons Section
+   -------------------------------------------- */
+
+.cfp-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.cfp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Card base */
+.cfp-card {
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card color variants */
+.cfp-card--volunteer {
+  background-color: #dbeafe; /* light blue */
+}
+
+.cfp-card--attendee {
+  background-color: #fef3c7; /* light yellow */
+}
+
+.cfp-card--speaker {
+  background-color: #fce4ec; /* light pink */
+}
+
+/* Card image */
+.cfp-card__image {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.cfp-card__image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Card content */
+.cfp-card__content {
+  padding: 4px 4px 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cfp-card__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+}
+
+.cfp-card__text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4a4a4a;
+  margin: 0 0 16px 0;
+  flex: 1;
+}
+
+.cfp-card__link {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.cfp-card__link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive: stack cards on mobile */
+@media (max-width: 768px) {
+  .cfp-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cfp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* --------------------------------------------
+   News Section (placeholder - guided later)
+   -------------------------------------------- */
