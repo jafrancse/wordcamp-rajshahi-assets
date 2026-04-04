@@ -2,6 +2,16 @@
    WordCamp Rajshahi 2026 - Custom CSS
    ============================================ */
 
+/* --------------------------------------------
+   Global / Fonts
+   -------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 
 /* --------------------------------------------
    Call for Persons Section
@@ -10,54 +20,66 @@
 .cfp-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 60px 20px;
 }
 
 .cfp-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 /* Card base */
 .cfp-card {
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 16px;
+  border-radius: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.cfp-card:hover {
+  transform: translateY(-3px);
 }
 
 /* Card color variants */
 .cfp-card--volunteer {
-  background-color: #dbeafe; /* light blue */
+  background-color: #dbeafe;
 }
 
 .cfp-card--attendee {
-  background-color: #fef3c7; /* light yellow */
+  background-color: #fef3c7;
 }
 
 .cfp-card--speaker {
-  background-color: #fce4ec; /* light pink */
+  background-color: #fce4ec;
 }
 
 /* Card image */
 .cfp-card__image {
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .cfp-card__image img {
   width: 100%;
-  height: 220px;
+  height: 240px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
+}
+
+.cfp-card:hover .cfp-card__image img {
+  transform: scale(1.03);
 }
 
 /* Card content */
 .cfp-card__content {
-  padding: 4px 4px 8px;
+  padding: 4px 6px 8px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -72,35 +94,81 @@
 
 .cfp-card__text {
   font-size: 14px;
-  line-height: 1.5;
-  color: #4a4a4a;
-  margin: 0 0 16px 0;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 20px 0;
   flex: 1;
 }
 
-.cfp-card__link {
-  font-size: 14px;
-  font-weight: 700;
-  color: #1a1a1a;
+/* CTA - clean text link matching the design */
+.cfp-card__cta {
+  display: inline-block;
   text-decoration: none;
-  letter-spacing: 0.5px;
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  position: relative;
+  width: fit-content;
+  padding-bottom: 2px;
 }
 
-.cfp-card__link:hover {
-  text-decoration: underline;
+.cfp-card__cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #1a1a1a;
+  transition: width 0.3s ease;
 }
 
-/* Responsive: stack cards on mobile */
-@media (max-width: 768px) {
-  .cfp-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+.cfp-card:hover .cfp-card__cta::after {
+  width: 100%;
 }
 
+/* Responsive */
+
+/* Tablet: 2 columns */
 @media (min-width: 769px) and (max-width: 1024px) {
   .cfp-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: single card, horizontal scroll */
+@media (max-width: 768px) {
+  .cfp-section {
+    padding: 40px 0;
+  }
+
+  .cfp-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding: 0 16px 4px;
+    scrollbar-width: none;
+  }
+
+  .cfp-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cfp-card {
+    min-width: calc(100vw - 48px);
+    flex-shrink: 0;
+    scroll-snap-align: center;
+  }
+
+  .cfp-card__image img {
+    height: 200px;
+  }
+
+  .cfp-card:hover {
+    transform: none;
   }
 }
 
