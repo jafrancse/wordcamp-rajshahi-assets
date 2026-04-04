@@ -12,6 +12,12 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+.cfp-section *,
+.cfp-section *::before,
+.cfp-section *::after {
+  box-sizing: border-box;
+}
+
 
 /* --------------------------------------------
    Call for Persons Section
@@ -39,6 +45,8 @@ body {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .cfp-card:hover {
