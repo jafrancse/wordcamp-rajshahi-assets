@@ -137,30 +137,16 @@ body {
   }
 }
 
-/* Mobile: single card, horizontal scroll */
+/* Mobile: stack vertically */
 @media (max-width: 768px) {
   .cfp-section {
-    padding: 40px 0;
+    padding: 40px 16px;
   }
 
   .cfp-grid {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
     gap: 16px;
-    padding: 0 16px 4px;
-    scrollbar-width: none;
-  }
-
-  .cfp-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .cfp-card {
-    min-width: calc(100vw - 48px);
-    flex-shrink: 0;
-    scroll-snap-align: center;
   }
 
   .cfp-card__image img {
