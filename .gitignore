@@ -1,8 +1,7 @@
-# Ignore everything
-*
+# IDE / OS
+.DS_Store
+.claude/
 
-# Except remote.css
-!remote.css
-
-# And this gitignore
-!.gitignore
+# Source files (not for deployment)
+src/
+CLAUDE.md
