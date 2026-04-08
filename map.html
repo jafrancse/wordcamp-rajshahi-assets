@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordCamp Rajshahi 2026 - Venue Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
+    #map { width: 100%; height: 100%; }
+    .venue-popup { text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .venue-popup h3 { margin: 0 0 4px; font-size: 14px; color: #1a1a1a; }
+    .venue-popup p { margin: 0; font-size: 12px; color: #555; line-height: 1.4; }
+    .venue-popup a { color: #0073aa; text-decoration: none; font-size: 12px; }
+    .venue-popup a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var lat = 24.3636;
+    var lng = 88.6241;
+    var map = L.map('map').setView([lat, lng], 16);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    var marker = L.marker([lat, lng]).addTo(map);
+    marker.bindPopup(
+      '<div class="venue-popup">' +
+        '<h3>WordCamp Rajshahi 2026</h3>' +
+        '<p>Rajshahi University of Engineering &amp; Technology (RUET)</p>' +
+        '<p>Kazla, Rajshahi 6204, Bangladesh</p>' +
+        '<a href="https://www.google.com/maps/search/?api=1&query=24.3636,88.6241" target="_blank" rel="noopener">Open in Google Maps</a>' +
+      '</div>'
+    ).openPopup();
+  </script>
+</body>
+</html>
