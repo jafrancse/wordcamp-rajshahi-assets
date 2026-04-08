@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordCamp Rajshahi 2026 - Preview</title>
+  <link rel="stylesheet" href="../assets/css/remote.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+    .preview-label { text-align: center; padding: 16px; font-size: 12px; color: #999; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px dashed #ddd; }
+  </style>
+</head>
+<body>
+
+  <!-- Sections are load
+   ed from ../sections/ -->
+  <div class="preview-label">Call for Persons</div>
+  <div data-section="call-for-persons"></div>
+
+  <div class="preview-label">Venue Map</div>
+  <div data-section="venue-map"></div>
+
+  <!-- Add more sections here:
+  <div class="preview-label">News Section</div>
+  <div data-section="news-section"></div>
+  -->
+
+  <script>
+    document.querySelectorAll('[data-section]').forEach(el => {
+      const name = el.getAttribute('data-section');
+      fetch(`../sections/${name}.html`)
+        .then(r => r.text())
+        .then(html => { el.innerHTML = html; });
+    });
+  </script>
+</body>
+</html>
