@@ -247,23 +247,24 @@ body {
 
 .vmap-pin__icon {
   display: block;
-  width: 24px;
-  height: 34px;
+  width: 30px;
+  height: 42px;
   background: #c8a84e;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .vmap-pin__icon::after {
   content: '';
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  background: #0a1f1a;
+  width: 12px;
+  height: 12px;
+  background: #fff;
   border-radius: 50%;
 }
 
