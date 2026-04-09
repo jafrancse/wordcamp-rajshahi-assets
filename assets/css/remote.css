@@ -185,128 +185,128 @@ body {
 .vmap-container {
   display: block;
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  aspect-ratio: 1280 / 420;
-  max-height: 480px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .vmap-container:hover .vmap-bg {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 /* Map background image */
 .vmap-bg {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1280 / 420;
   object-fit: cover;
   display: block;
   transition: transform 0.6s ease;
 }
 
-/* Venue info card - top left */
-.vmap-card {
-  position: absolute;
-  top: 28px;
-  left: 28px;
-  background: rgba(8, 30, 24, 0.85);
-  backdrop-filter: blur(6px);
-  border-left: 3px solid #c8a84e;
-  padding: 16px 20px;
-  border-radius: 6px;
-  max-width: 260px;
-}
-
-.vmap-card__title {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 6px 0;
-  letter-spacing: 0.5px;
-}
-
-.vmap-card__address {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-}
-
-/* Map pin marker - center */
+/* Map pin marker */
 .vmap-pin {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -100%);
+  z-index: 2;
 }
 
 .vmap-pin__icon {
   display: block;
-  width: 30px;
-  height: 42px;
-  background: #c8a84e;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
+  width: 20px;
+  height: 20px;
+  background: #2d8c3c;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.vmap-pin__icon::after {
-  content: '';
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background: #fff;
-  border-radius: 50%;
-}
-
-.vmap-pin__shadow {
+.vmap-pin__pulse {
   display: block;
-  width: 16px;
-  height: 6px;
-  background: rgba(0, 0, 0, 0.3);
+  width: 32px;
+  height: 32px;
+  background: rgba(45, 140, 60, 0.15);
   border-radius: 50%;
-  margin: 4px auto 0;
+  margin: -26px auto 0;
+  animation: vmap-pulse 2s ease-in-out infinite;
 }
 
-/* Decorative zoom controls - bottom right */
-.vmap-zoom {
+@keyframes vmap-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+}
+
+/* Bottom info bar */
+.vmap-bar {
   position: absolute;
-  bottom: 24px;
-  right: 24px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 16px 24px;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.vmap-zoom__btn {
+.vmap-bar__pin {
+  width: 40px;
+  height: 40px;
+  background: #eaf5ec;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: rgba(8, 30, 24, 0.8);
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 18px;
-  font-weight: 300;
-  border-radius: 4px;
-  user-select: none;
+  flex-shrink: 0;
 }
 
-.vmap-zoom__btn:first-child {
-  border-radius: 6px 6px 2px 2px;
+.vmap-bar__pin-icon {
+  display: block;
 }
 
-.vmap-zoom__btn:last-child {
-  border-radius: 2px 2px 6px 6px;
+.vmap-bar__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.vmap-bar__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 2px 0;
+}
+
+.vmap-bar__address {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #777;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vmap-bar__cta {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d8c3c;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+
+.vmap-container:hover .vmap-bar__cta {
+  opacity: 0.7;
 }
 
 /* Responsive */
@@ -315,41 +315,33 @@ body {
     padding: 40px 16px;
   }
 
+  .vmap-bg {
+    aspect-ratio: 4 / 3;
+  }
+
   .vmap-container {
-    aspect-ratio: auto;
-    height: 300px;
-    border-radius: 14px;
+    border-radius: 12px;
   }
 
-  .vmap-card {
-    top: 16px;
-    left: 16px;
-    padding: 12px 16px;
-    max-width: 220px;
+  .vmap-bar {
+    padding: 14px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .vmap-card__title {
-    font-size: 13px;
+  .vmap-bar__address {
+    white-space: normal;
   }
 
-  .vmap-card__address {
-    font-size: 11px;
-  }
-
-  .vmap-zoom {
-    bottom: 16px;
-    right: 16px;
-  }
-
-  .vmap-zoom__btn {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
+  .vmap-bar__cta {
+    width: 100%;
+    padding-left: 54px;
+    font-size: 12px;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .vmap-container {
+  .vmap-bg {
     aspect-ratio: 16 / 7;
   }
 }
