@@ -182,167 +182,156 @@ body {
   box-sizing: border-box;
 }
 
+/* Full-width map container */
 .vmap-container {
   display: block;
   position: relative;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .vmap-container:hover .vmap-bg {
   transform: scale(1.02);
 }
 
-/* Map background image */
 .vmap-bg {
   width: 100%;
   aspect-ratio: 1280 / 420;
   object-fit: cover;
+  object-position: center 55%;
   display: block;
   transition: transform 0.6s ease;
 }
 
-/* Map pin marker */
+/* Pin on map */
 .vmap-pin {
   position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -100%);
+  top: 34%;
+  left: 46%;
+  transform: translate(-50%, -50%);
   z-index: 2;
 }
 
-.vmap-pin__icon {
+.vmap-pin__dot {
   display: block;
   width: 20px;
   height: 20px;
   background: #2d8c3c;
-  border-radius: 50%;
   border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   position: relative;
+  z-index: 2;
 }
 
-.vmap-pin__pulse {
+.vmap-pin__ring {
   display: block;
-  width: 32px;
-  height: 32px;
-  background: rgba(45, 140, 60, 0.15);
+  width: 42px;
+  height: 42px;
+  border: 2px solid rgba(45, 140, 60, 0.3);
   border-radius: 50%;
-  margin: -26px auto 0;
-  animation: vmap-pulse 2s ease-in-out infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: vmap-pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes vmap-pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.4; }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
 
-/* Bottom info bar */
-.vmap-bar {
+/* Floating card over map - bottom left */
+.vmap-card {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 24px;
+  left: 24px;
   background: #fff;
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  padding: 20px 24px;
+  max-width: 320px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.vmap-bar__pin {
-  width: 40px;
-  height: 40px;
-  background: #eaf5ec;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.vmap-bar__pin-icon {
+.vmap-card__label {
   display: block;
-}
-
-.vmap-bar__info {
-  flex: 1;
-  min-width: 0;
-}
-
-.vmap-bar__title {
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #2d8c3c;
+  margin: 0 0 8px 0;
+}
+
+.vmap-card__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
   font-weight: 700;
   color: #1a1a1a;
-  margin: 0 0 2px 0;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
 }
 
-.vmap-bar__address {
+.vmap-card__address {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
-  line-height: 1.4;
-  color: #777;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.5;
+  color: #888;
+  margin: 0 0 16px 0;
 }
 
-.vmap-bar__cta {
+.vmap-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: 'Inter', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: #2d8c3c;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: opacity 0.2s ease;
 }
 
-.vmap-container:hover .vmap-bar__cta {
-  opacity: 0.7;
+/* Responsive - Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .vmap-bg {
+    aspect-ratio: 16 / 7;
+  }
 }
 
-/* Responsive */
+/* Responsive - Mobile */
 @media (max-width: 768px) {
   .vmap-section {
     padding: 40px 16px;
+  }
+
+  .vmap-container {
+    border-radius: 14px;
   }
 
   .vmap-bg {
     aspect-ratio: 4 / 3;
   }
 
-  .vmap-container {
+  .vmap-card {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: none;
+    padding: 16px 18px;
     border-radius: 12px;
   }
 
-  .vmap-bar {
-    padding: 14px 16px;
-    flex-wrap: wrap;
-    gap: 10px;
+  .vmap-card__title {
+    font-size: 16px;
   }
 
-  .vmap-bar__address {
-    white-space: normal;
-  }
-
-  .vmap-bar__cta {
-    width: 100%;
-    padding-left: 54px;
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .vmap-bg {
-    aspect-ratio: 16 / 7;
+  .vmap-card__address {
+    font-size: 11px;
+    margin-bottom: 12px;
   }
 }
 
