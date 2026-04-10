@@ -337,5 +337,213 @@ body {
 
 
 /* --------------------------------------------
-   News Section (placeholder - guided later)
+   Blog / Latest Posts Section
    -------------------------------------------- */
+
+/* Grid: 2 columns on desktop */
+.wc-rajshahi-posts {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Each post card */
+.wc-rajshahi-posts > li {
+  border-radius: 20px;
+  overflow: hidden;
+  width: auto !important;
+  position: relative;
+  min-height: 260px;
+}
+
+/* Alternating card bg colors */
+.wc-rajshahi-posts > li:nth-child(4n + 1) { background-color: #fef3c7; }
+.wc-rajshahi-posts > li:nth-child(4n + 2) { background-color: #cbe9ce; }
+.wc-rajshahi-posts > li:nth-child(4n + 3) { background-color: #fce4ec; }
+.wc-rajshahi-posts > li:nth-child(4n + 4) { background-color: #dbeafe; }
+
+/* Break the flex columns — stack them as layers */
+.wc-rajshahi-posts .wp-block-columns {
+  display: block !important;
+  position: relative;
+  margin: 0 !important;
+  height: 100%;
+  min-height: 260px;
+}
+
+/* First column: image fills the entire card as background */
+.wc-rajshahi-posts .wp-block-column:first-child {
+  position: absolute !important;
+  inset: 0;
+  flex-basis: auto !important;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  z-index: 0;
+}
+
+.wc-rajshahi-posts .wp-block-post-featured-image {
+  height: 100%;
+  margin: 0 !important;
+  overflow: hidden;
+}
+
+.wc-rajshahi-posts .wp-block-post-featured-image a {
+  display: block;
+  height: 100%;
+}
+
+.wc-rajshahi-posts .wp-block-post-featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.wc-rajshahi-posts > li:hover .wp-block-post-featured-image img {
+  transform: scale(1.05);
+}
+
+/* Second column: floating CTA card over the image */
+.wc-rajshahi-posts .wp-block-column:last-child {
+  position: absolute !important;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  flex-basis: auto !important;
+  width: 55%;
+  z-index: 2;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center;
+  border-radius: 16px 0 0 16px;
+  padding: 28px 28px 28px 32px !important;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* CTA card bg colors */
+.wc-rajshahi-posts > li:nth-child(4n + 1) .wp-block-column:last-child { background-color: rgba(254, 243, 199, 0.93); }
+.wc-rajshahi-posts > li:nth-child(4n + 2) .wp-block-column:last-child { background-color: rgba(203, 233, 206, 0.93); }
+.wc-rajshahi-posts > li:nth-child(4n + 3) .wp-block-column:last-child { background-color: rgba(252, 228, 236, 0.93); }
+.wc-rajshahi-posts > li:nth-child(4n + 4) .wp-block-column:last-child { background-color: rgba(219, 234, 254, 0.93); }
+
+/* Hover: slide CTA card left */
+.wc-rajshahi-posts > li:hover .wp-block-column:last-child {
+  transform: translateY(-50%) translateX(-12px);
+}
+
+/* No-image cards: let CTA fill the card naturally */
+.wc-rajshahi-posts .wp-block-column:first-child:empty + .wp-block-column:last-child {
+  position: relative !important;
+  top: auto;
+  right: auto;
+  transform: none;
+  width: 100%;
+  border-radius: 0;
+  background-color: transparent !important;
+  padding: 32px 36px !important;
+}
+
+.wc-rajshahi-posts > li:hover .wp-block-column:first-child:empty + .wp-block-column:last-child {
+  transform: none;
+}
+
+/* Title */
+.wc-rajshahi-posts .wp-block-post-title a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.wc-rajshahi-posts .wp-block-post-title a:hover {
+  color: #2d5016;
+}
+
+/* Make entire card clickable */
+.wc-rajshahi-posts .wp-block-post-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+/* Date + READ MORE button */
+.wc-rajshahi-posts .wp-block-post-date {
+  position: relative;
+  padding-bottom: 52px;
+}
+
+.wc-rajshahi-posts .wp-block-post-date::after {
+  content: "READ MORE";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 20px;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #1a1a1a;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.wc-rajshahi-posts > li:hover .wp-block-post-date::after {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .wc-rajshahi-posts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 767px) {
+  .wc-rajshahi-posts {
+    gap: 12px;
+  }
+
+  .wc-rajshahi-posts > li {
+    min-height: auto;
+  }
+
+  .wc-rajshahi-posts .wp-block-columns {
+    min-height: auto;
+  }
+
+  /* Stack: image on top, content below */
+  .wc-rajshahi-posts .wp-block-column:first-child {
+    position: relative !important;
+    height: 200px;
+  }
+
+  .wc-rajshahi-posts .wp-block-column:last-child {
+    position: relative !important;
+    top: auto;
+    right: auto;
+    transform: none !important;
+    width: 100% !important;
+    border-radius: 0;
+    padding: 20px 20px 18px !important;
+    background-color: transparent !important;
+  }
+
+  .wc-rajshahi-posts > li:hover .wp-block-column:last-child {
+    transform: none !important;
+  }
+
+  .wc-rajshahi-posts .wp-block-post-featured-image img {
+    border-radius: 0;
+  }
+}

@@ -9,6 +9,12 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
     .preview-label { text-align: center; padding: 16px; font-size: 12px; color: #999; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px dashed #ddd; }
+    /* WordPress layout stubs for preview */
+    .is-layout-flex { display: flex; flex-wrap: wrap; }
+    .is-layout-constrained { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .wp-block-columns.is-layout-flex { gap: 0; }
+    .wp-block-column { flex: 1; }
+    .has-global-padding { padding: 20px 0; }
   </style>
 </head>
 <body>
@@ -21,10 +27,8 @@
   <div class="preview-label">Venue Map</div>
   <div data-section="venue-map"></div>
 
-  <!-- Add more sections here:
-  <div class="preview-label">News Section</div>
-  <div data-section="news-section"></div>
-  -->
+  <div class="preview-label">Blog / Latest Posts</div>
+  <div data-section="blog-posts"></div>
 
   <script>
     document.querySelectorAll('[data-section]').forEach(el => {
