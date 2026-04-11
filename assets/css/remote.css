@@ -355,9 +355,9 @@ body {
 /* Asymmetric grid */
 .sp-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  max-width: 900px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  max-width: 760px;
   margin: 0 auto;
   justify-content: center;
 }
@@ -372,7 +372,7 @@ body {
   background-color: #e8e8e8;
   overflow: hidden;
   text-decoration: none;
-  border-radius: 16px;
+  border-radius: 10px;
   filter: grayscale(100%);
   transition: filter 0.4s ease, transform 0.4s ease;
   grid-column: var(--c);
@@ -381,36 +381,72 @@ body {
 
 .sp-card:hover {
   filter: grayscale(0%);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   z-index: 2;
 }
 
-/* Overlay — slides up from bottom on hover */
+/* Pill-shaped overlay — slides up from bottom of card on hover */
 .sp-card__overlay {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
+  left: 50%;
+  bottom: 8px;
+  transform: translate(-50%, calc(100% + 12px));
+  display: inline-flex;
   align-items: center;
-  padding: 18px 20px;
-  background: rgba(6, 61, 9, 0.92);
-  transform: translateY(100%);
+  padding: 4px 10px;
+  background: #169a48;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  max-width: calc(100% - 12px);
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .sp-card:hover .sp-card__overlay {
-  transform: translateY(0);
+  transform: translate(-50%, 0);
 }
 
 .sp-card__name {
   display: block;
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
+  font-size: 9px;
   font-weight: 600;
   color: #fff;
-  line-height: 1.3;
-  letter-spacing: -0.2px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* CTA button below the grid */
+.sp-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.sp-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  background: transparent;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 999px;
+  padding: 12px 28px;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.sp-cta__btn:hover {
+  background: #1a1a1a;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 
