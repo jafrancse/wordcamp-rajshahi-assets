@@ -418,35 +418,39 @@ body {
   text-overflow: ellipsis;
 }
 
-/* CTA button below the grid */
+/* CTA link below the grid */
 .sp-cta {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
 .sp-cta__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  position: relative;
+  display: inline-block;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #1a1a1a;
-  background: transparent;
-  border: 1.5px solid #1a1a1a;
-  border-radius: 999px;
-  padding: 12px 28px;
   text-decoration: none;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  padding-bottom: 4px;
 }
 
-.sp-cta__btn:hover {
-  background: #1a1a1a;
-  color: #fff;
-  transform: translateY(-2px);
+.sp-cta__btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #1a1a1a;
+  transition: width 0.3s ease;
+}
+
+.sp-cta__btn:hover::after {
+  width: 100%;
 }
 
 
