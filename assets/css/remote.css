@@ -526,6 +526,148 @@ body {
 
 
 /* --------------------------------------------
+   Speakers — WordPress Query Block (.wcb_speaker)
+   Decorates the WP-generated speakers query to match
+   the diamond grid + pill hover design.
+   -------------------------------------------- */
+
+/* Grid container — diamond layout via nth-child */
+ul.wp-block-post-template:has(> li.wcb_speaker) {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 8px !important;
+  max-width: 760px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* Each speaker card */
+li.wp-block-post.wcb_speaker {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  filter: grayscale(100%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+  width: auto !important;
+  margin: 0 !important;
+}
+
+li.wp-block-post.wcb_speaker:hover {
+  filter: grayscale(0%);
+  transform: translateY(-2px);
+  z-index: 3;
+}
+
+/* Break the inner flex group, let children position freely */
+li.wcb_speaker .wp-block-group {
+  display: contents !important;
+}
+
+/* Avatar fills the entire card */
+li.wcb_speaker .wp-block-wordcamp-avatar {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+}
+
+li.wcb_speaker .wp-block-wordcamp-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+  border-radius: 0 !important;
+}
+
+/* Title becomes the pill overlay sliding up from bottom */
+li.wcb_speaker .wp-block-post-title {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translate(-50%, calc(100% + 12px));
+  margin: 0 !important;
+  padding: 4px 10px !important;
+  background: #169a48;
+  border-radius: 999px;
+  z-index: 2;
+  max-width: calc(100% - 12px);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+li.wcb_speaker:hover .wp-block-post-title {
+  transform: translate(-50%, 0);
+}
+
+li.wcb_speaker .wp-block-post-title a {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  letter-spacing: 0.2px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: auto;
+}
+
+/* Make the entire card clickable via the title link */
+li.wcb_speaker .wp-block-post-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+
+/* Hide the empty excerpt */
+li.wcb_speaker .wp-block-post-excerpt {
+  display: none !important;
+}
+
+/* Diamond layout positions — 3-5-7-7-5-3 = 30 speakers */
+li.wcb_speaker:nth-child(1) { grid-column: 3; grid-row: 1; }
+li.wcb_speaker:nth-child(2) { grid-column: 4; grid-row: 1; }
+li.wcb_speaker:nth-child(3) { grid-column: 5; grid-row: 1; }
+
+li.wcb_speaker:nth-child(4) { grid-column: 2; grid-row: 2; }
+li.wcb_speaker:nth-child(5) { grid-column: 3; grid-row: 2; }
+li.wcb_speaker:nth-child(6) { grid-column: 4; grid-row: 2; }
+li.wcb_speaker:nth-child(7) { grid-column: 5; grid-row: 2; }
+li.wcb_speaker:nth-child(8) { grid-column: 6; grid-row: 2; }
+
+li.wcb_speaker:nth-child(9)  { grid-column: 1; grid-row: 3; }
+li.wcb_speaker:nth-child(10) { grid-column: 2; grid-row: 3; }
+li.wcb_speaker:nth-child(11) { grid-column: 3; grid-row: 3; }
+li.wcb_speaker:nth-child(12) { grid-column: 4; grid-row: 3; }
+li.wcb_speaker:nth-child(13) { grid-column: 5; grid-row: 3; }
+li.wcb_speaker:nth-child(14) { grid-column: 6; grid-row: 3; }
+li.wcb_speaker:nth-child(15) { grid-column: 7; grid-row: 3; }
+
+li.wcb_speaker:nth-child(16) { grid-column: 1; grid-row: 4; }
+li.wcb_speaker:nth-child(17) { grid-column: 2; grid-row: 4; }
+li.wcb_speaker:nth-child(18) { grid-column: 3; grid-row: 4; }
+li.wcb_speaker:nth-child(19) { grid-column: 4; grid-row: 4; }
+li.wcb_speaker:nth-child(20) { grid-column: 5; grid-row: 4; }
+li.wcb_speaker:nth-child(21) { grid-column: 6; grid-row: 4; }
+li.wcb_speaker:nth-child(22) { grid-column: 7; grid-row: 4; }
+
+li.wcb_speaker:nth-child(23) { grid-column: 2; grid-row: 5; }
+li.wcb_speaker:nth-child(24) { grid-column: 3; grid-row: 5; }
+li.wcb_speaker:nth-child(25) { grid-column: 4; grid-row: 5; }
+li.wcb_speaker:nth-child(26) { grid-column: 5; grid-row: 5; }
+li.wcb_speaker:nth-child(27) { grid-column: 6; grid-row: 5; }
+
+li.wcb_speaker:nth-child(28) { grid-column: 3; grid-row: 6; }
+li.wcb_speaker:nth-child(29) { grid-column: 4; grid-row: 6; }
+li.wcb_speaker:nth-child(30) { grid-column: 5; grid-row: 6; }
+
+
+/* --------------------------------------------
    Blog / Latest Posts Section
    -------------------------------------------- */
 
